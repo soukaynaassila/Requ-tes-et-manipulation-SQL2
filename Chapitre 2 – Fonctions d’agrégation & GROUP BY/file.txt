@@ -1,0 +1,52 @@
+
+ => COUNT() → counts rows
+
+=> SUM() → adds values
+
+=> AVG() → calculates average
+
+=> MIN() → finds the minimum value
+
+=> MAX() → finds the maximum value
+
+ - GROUP BY
+Groups rows that have the same values into summary rows.
+
+- HAVING
+Filters grouped results (used with aggregate functions).
+
+WHERE vs HAVING
+WHERE filters rows before grouping
+
+HAVING filters results after grouping
+
+
+    =>>Examples (Realisation QSL1)
+-Count all employees
+SELECT COUNT(*) AS total_employees
+FROM Employee;
+
+-Calculate average salary
+SELECT AVG(salaire) AS average_salary
+FROM Employee;
+
+-Get minimum and maximum salary
+SELECT MIN(salaire) AS min_salary, MAX(salaire) AS max_salary
+FROM Employee;
+
+-Number of employees per department
+SELECT id_department, COUNT(*) AS nb_employees
+FROM Employee
+GROUP BY id_department;
+
+-Filter groups using HAVING
+SELECT id_department, COUNT(*) AS nb_employees
+FROM Employee
+GROUP BY id_department
+HAVING COUNT(*) > 1;
+
+ Summary :
+Aggregate functions summarize data.
+GROUP BY organizes data into groups.
+WHERE filters rows before aggregation.
+HAVING filters grouped results after aggregation.
