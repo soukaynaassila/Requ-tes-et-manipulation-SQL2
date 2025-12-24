@@ -1,0 +1,48 @@
+=> SELECT
+The SELECT statement is used to retrieve data from a table.
+Example:
+SELECT * FROM Employee;
+➡️ Retrieves all columns and all rows from the Employee table.
+
+🔹 Selecting specific columns
+You can choose only the columns you need.
+Example:
+SELECT nom, prenom FROM Employee;
+➡️ Retrieves only the employee names and surnames.
+
+=> WHERE (Filtering data)
+The WHERE clause filters records based on a condition.
+
+Example:
+SELECT nom, salaire
+FROM Employee
+WHERE salaire > 4000;
+➡️ Retrieves employees with a salary greater than 4000.
+
+🔹 Comparison operators
+SQL uses operators to define conditions.
+
+Example with LIKE:
+SELECT nom
+FROM Employee
+WHERE nom LIKE 'S%';
+➡️ Retrieves employees whose name starts with the letter S.
+
+=> ORDER BY (Sorting results)
+The ORDER BY clause sorts the results.
+
+Example:
+SELECT nom, salaire
+FROM Employee
+ORDER BY salaire DESC(تنازلي);              /*ASC:تصاعدي*/
+➡️ Retrieves employees sorted by salary from highest to lowest.
+
+   ->LIMIT (Restricting results)
+The LIMIT clause restricts the number of rows returned.
+
+Example:
+SELECT nom
+FROM Employee
+ORDER BY salaire DESC
+LIMIT 3;
+➡️ Retrieves the top 3 highest-paid employees.
