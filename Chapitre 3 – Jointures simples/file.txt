@@ -1,0 +1,52 @@
+ ==>What is a JOIN?
+A JOIN is used to retrieve data from two or more tables that are related by a primary key and a foreign key.
+
+Example:
+One table stores employees
+Another table stores departments
+A JOIN links them together
+
+ -Why do we need JOINs?
+Because data is stored in separate tables to avoid duplication.
+JOINs allow us to combine this data in one result.
+
+ => Main Types of Joins
+1️⃣ INNER JOIN (Most Important)
+Returns only rows that exist in both tables
+If there is no match, the row is not shown
+EX:
+SELECT e.nom, d.nom
+FROM Employee e
+INNER JOIN Department d
+ON e.id_department = d.id;
+
+--> Shows employees only if they belong to a department
+
+2️⃣ LEFT JOIN
+Returns all rows from the left table
+Shows NULL if there is no matching row in the right table
+SELECT e.nom, p.nom
+FROM Employee e
+LEFT JOIN Project p
+ON e.id = p.id_employee;
+
+--> Shows all employees, even those without a project
+
+3️⃣ RIGHT JOIN (less used)
+Returns all rows from the right table
+Similar to LEFT JOIN but reversed
+ ==== Aliases (Very Important)
+Aliases make queries shorter and clearer
+
+Employee e
+Department d
+Project p
+
+==== JOIN Condition (ON)
+The ON clause defines how tables are linked
+ON e.id_department = d.id
+This connects:
+foreign key → primary key
+
+
+
