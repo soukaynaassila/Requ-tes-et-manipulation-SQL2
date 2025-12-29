@@ -1,0 +1,65 @@
+==> What is INSERT INTO?
+INSERT INTO is an SQL command used to add new data (rows) into a table.
+ -Every time you want to store new information, you use INSERT INTO.
+
+----> Step 1: Basic INSERT INTO syntax
+General syntax:
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+Meaning:
+table_name → the table where data will be inserted
+columns → columns you want to fill
+values → data you insert (same order as columns)
+
+---->Step 2: Insert data into a table (Partial insertion)
+ You insert only specific columns
+ AUTO_INCREMENT columns are skipped automatically
+
+Example: Insert a user
+INSERT INTO Utilisateur (nom, email, mot_de_passe)
+VALUES ('Alice', 'alice@test.com', '1234');
+
+Explanation:
+id is AUTO_INCREMENT → generated automatically
+Only required columns are provided
+   *This is the recommended method
+
+---->Step 3: Insert data into another table (with foreign key)
+Example: Insert an article
+INSERT INTO Article (titre, contenu, date_pub, id_utilisateur)
+VALUES ('Welcome', 'First article content', '2025-07-18', 1);
+Explanation:
+id_utilisateur = 1 must already exist in Utilisateur
+Foreign keys ensure data consistency
+    *If user ID does not exist → ERROR
+
+---->Step 4: Full insertion (All columns)
+ Used when you insert all columns
+ For AUTO_INCREMENT → use NULL
+INSERT INTO Utilisateur
+VALUES (NULL, 'Bob', 'bob@test.com', 'passbob');
+   ===Less safe → column order must be exact
+
+---->Step 5: Insert multiple rows at once
+ Insert many records in one query
+INSERT INTO Utilisateur (nom, email, mot_de_passe)
+VALUES
+  ('Charlie', 'charlie@test.com', 'pass1'),
+  ('Sara', 'sara@test.com', 'pass2');
+   ===Faster and optimized
+
+---->Step 6: AUTO_INCREMENT behavior
+AUTO_INCREMENT generates IDs automatically
+You do NOT need to insert the ID
+Use NULL if inserting all columns
+
+Example:
+INSERT INTO Department (nom)
+VALUES ('IT');
+
+---->Step 7: Verify inserted data
+Always check after inserting:
+
+SELECT * FROM Utilisateur;
+SELECT * FROM Article;
+=== Confirms data was inserted correctly

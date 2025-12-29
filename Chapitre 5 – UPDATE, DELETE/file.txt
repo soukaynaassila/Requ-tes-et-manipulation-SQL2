@@ -1,0 +1,62 @@
+===> Step 0: What are UPDATE and DELETE?
+UPDATE is used to modify existing data in a table.
+DELETE is used to remove data from a table.
+
+ --- Both commands are dangerous without WHERE.
+
+===> Step 1: UPDATE – Basic syntax
+UPDATE table_name
+SET column1 = value1, column2 = value2
+WHERE condition;
+Explanation:
+UPDATE table_name → choose the table
+SET → new values
+WHERE → select which rows to change
+
+===> Step 2: Update one record
+Example:
+UPDATE Utilisateur
+SET nom = 'Alice Dupont', email = 'alice.dupont@test.com'
+WHERE id = 1;
+-----> Only the user with id = 1 is updated
+
+===> Step 3: Update multiple records
+Example:
+UPDATE Article
+SET titre = 'Updated Article'
+WHERE id_utilisateur = 1;
+----->All articles written by user 1 are updated
+
+=====> Step 4: DELETE – Basic syntax
+DELETE FROM table_name
+WHERE condition;
+------>Without WHERE → all data is deleted
+
+====> Step 5: Delete one record
+Example:
+DELETE FROM Commentaire
+WHERE id = 2;
+-----> Only the comment with id = 2 is deleted
+
+====> Step 6: Delete multiple records
+Example:
+DELETE FROM Article
+WHERE date_pub < '2024-01-01';
+---->All old articles are removed
+
+===> Step 7: Always verify before and after
+Before:
+SELECT * FROM Article WHERE date_pub < '2024-01-01';
+
+After:
+SELECT * FROM Article;
+
+-----> This avoids mistakes
+ Summary (Key Points)
+
+UPDATE modifies existing records
+DELETE removes records from a table
+WHERE is mandatory to avoid affecting all rows
+Test with SELECT before UPDATE or DELETE
+Backup data before large deletions
+
