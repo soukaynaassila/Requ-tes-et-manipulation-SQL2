@@ -1,120 +1,84 @@
 
-❗ Problem:
+ Problem:
 In real projects, we don’t run one query alone.
 We run many queries together, and if one fails, everything should stop.
 
-👉 This chapter teaches you how to:
-
+  ==>This chapter teaches you how to:
 Run many queries safely
 Avoid big mistakes
 Write clean and professional SQL
 
-🧠 REAL-LIFE EXAMPLE (VERY IMPORTANT)
-
+=======>>> REAL-LIFE EXAMPLE (VERY IMPORTANT)
 Imagine:
-
-You are transferring money in a bank 💳
-
+You are transferring money in a bank 
 Step 1: Remove money from Account A
-
 Step 2: Add money to Account B
+ * If step 2 fails and step 1 already happened → BIG PROBLEM
 
-❌ If step 2 fails and step 1 already happened → BIG PROBLEM
-
-✔️ Solution → TRANSACTION
-
+ *Solution → TRANSACTION
 SQL transactions work the same way.
-
-🥇 STEP 1: What is a Transaction?
-
+===== STEP 1: What is a Transaction?
 A transaction is a group of SQL commands that work together.
-
 Either ALL succeed
-
 Or ALL are cancelled
-
-🟦 STEP 2: Transaction keywords (MEMORIZE THIS)
+===== STEP 2: Transaction keywords (MEMORIZE THIS)
 Keyword	Meaning
 START TRANSACTION	Start safe mode
 COMMIT	Save everything
 ROLLBACK	Cancel everything
-🥉 STEP 3: Basic Transaction Structure
+===== STEP 3: Basic Transaction Structure
 START TRANSACTION;
-
 -- SQL commands here
-
 COMMIT;
+If something goes wrong  → use ROLLBACK
 
-
-If something goes wrong ⛔ → use ROLLBACK
-
-🟨 STEP 4: Why is this IMPORTANT?
-
+====== STEP 4: Why is this IMPORTANT?
 Without transaction:
-
 INSERT works
-
 UPDATE fails
-
 Database becomes inconsistent
-
 With transaction:
 
 If one query fails → nothing is saved
+   ==Database stays clean and correct
 
-✔️ Database stays clean and correct
-
-🧩 STEP 5: Full Example (Explained line by line)
+======= STEP 5: Full Example (Explained line by line)
 Scenario:
-
 You want to:
-
 Add an article
-
 Update a user email
-
 Delete a comment
-👉 All must succeed together
+All must succeed together
 
 🔹 Step 5.1: Start transaction
 START TRANSACTION;
-
-
-➡️ SQL enters safe mode
+   SQL enters safe mode
 
 🔹 Step 5.2: INSERT (add data)
 INSERT INTO Article (titre, contenu, date_pub, id_utilisateur)
 VALUES ('New post', 'Example text', '2025-07-18', 1);
-
-
-➡️ Adds a new article
-⚠️ If id_utilisateur = 1 does not exist → ERROR
+Adds a new article
+     ¨^ If id_utilisateur = 1 does not exist → ERROR
 
 🔹 Step 5.3: UPDATE (modify data)
 UPDATE Utilisateur
 SET email = 'alice.update@test.com'
 WHERE id = 1;
-
-
-➡️ Updates only one user
-❗ WHERE is mandatory
+ Updates only one user
+ WHERE is mandatory
 
 🔹 Step 5.4: DELETE (remove data)
 DELETE FROM Commentaire
 WHERE id = 3;
-
-
-➡️ Deletes only one comment
+ Deletes only one comment
 
 🔹 Step 5.5: COMMIT (save)
 COMMIT;
+ All changes are saved permanently
 
+======= STEP 6: What if something goes wrong?
 
-✔️ All changes are saved permanently
-
-🟥 STEP 6: What if something goes wrong?
-
-If you see an error ❌:
+If you see an error :
 
 ROLLBACK;
 
@@ -122,7 +86,7 @@ ROLLBACK;
 ✔️ Everything is cancelled
 ✔️ Database returns to original state
 
-🟩 STEP 7: COMMENTS (Very important for good code)
+===== STEP 7: COMMENTS (Very important for good code)
 Single-line comment
 -- This deletes old comments
 
@@ -131,46 +95,10 @@ Multi-line comment
 This script manages blog data
 Insert + Update + Delete
 */
-
-
-✔️ Makes SQL readable
-✔️ Very important in teamwork
-
-🛡️ STEP 8: SQL BEST PRACTICES (EXAM QUESTIONS 🔥)
-✅ Always do this:
-
-Use WHERE with UPDATE & DELETE
-
-Use transactions for multiple queries
-
-Write comments
-
-Test with SELECT first
-
-❌ NEVER do this:
-DELETE FROM Article;
-
-
-🚨 This deletes ALL DATA
-
-✔️ Safe way:
-SELECT * FROM Article WHERE date_pub < '2024-01-01';
-
-
-Then:
-
-DELETE FROM Article WHERE date_pub < '2024-01-01';
-
-🧾 FINAL SUMMARY (VERY SIMPLE)
-
+ SUMMARY 
 Combined queries = many SQL commands together
-
 Transactions protect your database
-
 COMMIT saves
-
 ROLLBACK cancels
-
 WHERE prevents disasters
-
 Comments = clean code

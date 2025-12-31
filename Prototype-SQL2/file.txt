@@ -1,0 +1,17 @@
+MCD
+DEPARTMENT
+Attributs:
+id_department (Identifiant)
+nom
+
+EMPLOYEE
+Attributs:
+id_employee (Identifiant)
+nom
+prenom
+salaire
+
+PROJECT
+Attributs:
+id_project (Identifiant)
+nom
